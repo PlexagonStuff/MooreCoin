@@ -16,7 +16,8 @@ unlink("login.json");
 
 //This block recreates the login and wallet files and repopulates it with admin information
 $id = "admin";
-$array = array($id => array("password" => 1234));
+$password = "*****";
+$array = array($id => array("password" => $password));
 $json = json_encode($array);
 file_put_contents("login.json", $json);
 
