@@ -16,8 +16,7 @@ unlink("login.json");
 
 //This block recreates the login and wallet files and repopulates it with admin information
 $id = "admin";
-$password = "*****";
-$array = array($id => array("password" => $password));
+$array = array($id => array("password" => 1234));
 $json = json_encode($array);
 file_put_contents("login.json", $json);
 
@@ -25,6 +24,8 @@ $id = "admin";
 $array = array($id => array("coins" => 0));
 $json = json_encode($array);
 file_put_contents("wallet.json", $json);
+
+
 
 header('Location: wallet.php');
 exit;
