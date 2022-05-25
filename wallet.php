@@ -18,15 +18,24 @@ session_start();
       $json = json_decode(file_get_contents($file), true);
       $settings = "backend.json";
       $jason = json_decode(file_get_contents($settings), true);
-      //If we don't have a wallet (first time login), we add a new wallet (initializes three coins )
+      //If we don't have a wallet (first time login), we add a new wallet (initializes three coins)
       if (is_null($json[$_SESSION["id"]])) {
-        $date = date("z")+1;
         $coins = 3.0;
+        $jason["moneySupply"] = $jason["moneySupply"] + 3.0;
         $json[$_SESSION["id"]] = array("coins" => $coins);
         file_put_contents($file, json_encode($json));
+        file_put_contents($settings, json_encode($jason));
       }
+
       $file = "wallet.json";
       $json = json_decode(file_get_contents($file), true);
+      $jason = json_decode(file_get_contents($settings), true);
+
+      //Calculate Exchange Rate http://mooregb.weebly.com/ez-money-market.html has the equations
+      $money = floatval($jason["moneySupply"]);
+      $jason["exchangeRate"] = ((pow($money, 3))/16464000) - ((pow($money, 2) * 3)/78400) + ($money/1680) + (5/2);
+      $jason["interestRate"] = (((5 * $money) /14) + 200) * 0.01;
+
     if ($_SESSION["id"] == "admin") {
       //If admin, go to admin menu (change balances or settings)
       echo "Hello Mr. Moore"; ?>
@@ -44,7 +53,11 @@ session_start();
      <!-- This shows user information on their dashboard, and provides an option to exchange MooreCoin for summative points (add email function later) -->
     <p> <img src="Media/Mr.Moore Transparent.png"/>Hello <?php echo $_SESSION["id"] ?> You have <?php echo $json[$_SESSION["id"]]["coins"] ?> Moorecoins </p>
     <p> The current exchange rate is 1 MooreCoin to <?php echo $jason["exchangeRate"] ?> summative points </p>
-    <p> The current interest rate is <?php echo $jason["interestRate"] ?>%</p>
+    <p> The current interest rate is <?php echo (floatval($jason["interestRate"]) * 100) ?>%</p>
+    <form action="bonds.php">
+    <button style="background-color: #9477ac;"> Go to the Bond Market </button>
+    </form>
     <?php }?>
+    <?php file_put_contents($settings, json_encode($jason)); ?>
   </body>
 </html>
