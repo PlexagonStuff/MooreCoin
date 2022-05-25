@@ -31,10 +31,33 @@ session_start();
       $json = json_decode(file_get_contents($file), true);
       $jason = json_decode(file_get_contents($settings), true);
 
+      
+
+      $bond = json_decode(file_get_contents("bonds.json"), true);
+      //Check to see if bond has appreciated
+      for ($i = 1; $i <= $jason["bondSupply"]; $i++){
+        //If the bond has the same owner as the session id, check to see if the bond has matured
+        if ($bond[strval($i)]["owner"] == $_SESSION["id"]){
+          //This checks to see if the date on the bond is three weeks from the current date or more (in case they haven't logged in in a while)
+          if ((((date("z") + 1) -$bond[strval($i)]["date"]) / 21) >= 1){
+            //Calculates Interest and adds that to principal (bond price) then adds to wallet and money supply
+            $interest = $bond[strval($i)]["price"] * $bond[strval($i)]["ir"];
+            $bondworth = $bond[strval($i)]["price"] + $interest;
+            $json[$_SESSION["id"]]["coins"] = $json[$_SESSION["id"]]["coins"] + $bondworth;
+            $jason["moneySupply"]= $jason["moneySupply"] + $bondworth;
+            unset($bond[strval($i)]);
+          }
+        }
+      }
+     
       //Calculate Exchange Rate http://mooregb.weebly.com/ez-money-market.html has the equations
       $money = floatval($jason["moneySupply"]);
       $jason["exchangeRate"] = ((pow($money, 3))/16464000) - ((pow($money, 2) * 3)/78400) + ($money/1680) + (5/2);
       $jason["interestRate"] = (((5 * $money) /14) + 200) * 0.01;
+
+      file_put_contents($file, json_encode($json));
+      file_put_contents($settings, json_encode($jason));
+      file_put_contents("bonds.json", json_encode($bond));
 
     if ($_SESSION["id"] == "admin") {
       //If admin, go to admin menu (change balances or settings)
@@ -49,6 +72,8 @@ session_start();
       <button formaction="clear.php" style="background-color: #9477ac;">Clear All Data </button>
       </form>
    <?php }
+
+
     else { ?>
      <!-- This shows user information on their dashboard, and provides an option to exchange MooreCoin for summative points (add email function later) -->
     <p> <img src="Media/Mr.Moore Transparent.png"/>Hello <?php echo $_SESSION["id"] ?> You have <?php echo $json[$_SESSION["id"]]["coins"] ?> Moorecoins </p>
