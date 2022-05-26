@@ -13,6 +13,7 @@ $price = $json["bondPrice"];
 $money = $jason[$id]["coins"];
 $bondSupply = $json["bondSupply"];
 $ir = $json["interestRate"];
+$login = json_decode(file_get_contents("login.json"), true);
 
 //If they cannot afford a bond, just re-direct back to wallet.
 if ($money < $price) {
@@ -41,9 +42,9 @@ else {
 ini_set( 'display_errors', 1 );
 error_reporting( E_ALL );
 $from = "admin@moorecoin.online";
-$to = "plexagongb@gmail.com";
+$to = $login[$id]["email"];
 $subject = "Bond Reciept";
-$message = "Federal Reserve of Room 605 EZBOND NO. " . strval($bondSupply) . "This note certifies that " . strval($id) . "has purchased an EZBond from the Federal Reserve of Room 605 costing " . strval($price) . "MooreCoins on this day " . strval(date("r")) . " This person is entitled to their deposit plus an interest rate of " . strval($ir) . "in two weeks time. This note is the only receipt for this transaction- DO NOT LOSE";
+$message = "Federal Reserve of Room 605 EZBOND NO." . strval($bondSupply) . " This note certifies that " . strval($id) . " has purchased an EZBond from the Federal Reserve of Room 605 costing " . strval($price) . " MooreCoins on this day " . strval(date("r")) . " This person is entitled to their deposit plus an interest rate of " . strval($ir) . " in two weeks time. This note is the only receipt for this transaction- DO NOT LOSE.";
 $headers = "From:" . $from;
 if(mail($to,$subject,$message, $headers)) {
     echo "The email message was sent.";
