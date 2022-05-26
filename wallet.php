@@ -14,6 +14,7 @@ session_start();
   </head>
   <body>
     <?php 
+    error_reporting(E_ALL ^ E_WARNING); 
       $file = "wallet.json";
       $json = json_decode(file_get_contents($file), true);
       $settings = "backend.json";
