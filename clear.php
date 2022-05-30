@@ -28,7 +28,7 @@ $json = json_encode($array);
 file_put_contents("login.json", $json);
 
 $id = "admin";
-$array = array($id => array("coins" => 0));
+$array = array($id => array("coins" => 0, "email" => "pmoore@gbcs.org"));
 $json = json_encode($array);
 file_put_contents("wallet.json", $json);
 
