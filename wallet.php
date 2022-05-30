@@ -64,7 +64,6 @@ session_start();
       //If admin, go to admin menu (change balances or settings)
       echo "Hello Mr. Moore"; ?>
       <form action="updatesettings.php" method="post" autocomplete="off">
-        <input type="radio" id="Settings" name="option" value="settings"> Settings
         <input type="radio" id="Balances" name="option" value="balance"> Balances
         <input type="radio" id="Check" name="option" value="check"> Check All Accounts
         <input type="submit">
@@ -80,8 +79,9 @@ session_start();
     <p> <img src="Media/Mr.Moore Transparent.png"/>Hello <?php echo $_SESSION["id"] ?> You have <?php echo $json[$_SESSION["id"]]["coins"] ?> Moorecoins </p>
     <p> The current exchange rate is 1 MooreCoin to <?php echo $jason["exchangeRate"] ?> summative points </p>
     <p> The current interest rate is <?php echo (floatval($jason["interestRate"]) * 100) ?>%</p>
-    <form action="bonds.php">
-    <button style="background-color: #9477ac;"> Go to the Bond Market </button>
+    <form>
+    <button formaction="bonds.php" style="background-color: #9477ac;"> Go to the Bond Market </button>
+    <button formaction="exchange.php" style="background-color: #9477ac;"> Exchange for Summative Points </button>
     </form>
     <?php }?>
     <?php file_put_contents($settings, json_encode($jason)); ?>
