@@ -7,10 +7,11 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@473&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="Media/Moorecoinz.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Moorecoin Wallet</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <?php 
@@ -69,7 +70,7 @@ session_start();
         <input type="submit">
       </form>
       <form>
-      <button formaction="clear.php" style="background-color: #9477ac;">Clear All Data </button>
+      <button formaction="clear.php">Clear All Data </button>
       </form>
    <?php }
 
@@ -80,8 +81,8 @@ session_start();
     <p> The current exchange rate is 1 MooreCoin to <?php echo $jason["exchangeRate"] ?> summative points </p>
     <p> The current interest rate is <?php echo (floatval($jason["interestRate"]) * 100) ?>%</p>
     <form>
-    <button formaction="bonds.php" style="background-color: #9477ac;"> Go to the Bond Market </button>
-    <button formaction="exchange.php" style="background-color: #9477ac;"> Exchange for Summative Points </button>
+    <button formaction="bonds.php"> Go to the Bond Market </button>
+    <button formaction="exchange.php" > Exchange for Summative Points </button>
     </form>
     <?php }?>
     <?php file_put_contents($settings, json_encode($jason)); ?>

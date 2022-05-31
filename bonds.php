@@ -5,9 +5,10 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="Media/Moorecoinz.png">
     <meta name="viewport" content="width=device-width">
     <title>Update Settings</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
   <div class="header">
@@ -35,7 +36,7 @@ session_start();
  ?>
  <p> Bonds are currently worth <?php echo $json["bondPrice"] ?> MooreCoins. </p>
  <form action="bondreciept.php" onsubmit="return submit()" style="align-self: center; ">
-<button style="background-color: #9477ac;"> Buy Bond </button>
+<button > Buy Bond </button>
 </form>
 </body>
 </html>

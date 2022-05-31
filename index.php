@@ -8,7 +8,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Welcome to MooreCoin!</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <?php
+  $FILE_TIME = filemtime("styles.css");
+$CSS_LINK  = "styles.css?version=$FILE_TIME";
+?>
+  <link href="<?php echo $CSS_LINK?>" rel="stylesheet" type="text/css" />
  </head>
  <body>
      <div class="header">
@@ -16,21 +20,21 @@
 </div>
 <div class="row">
     <div class="column">
-      <p style="color: #6882c0;"></p>
+      <p style="color: black;"></p>
     </div>
     <div class="column">
         <h2> Login </h2>
         <form action="redirect.php" method="post" autocomplete="off" >
             <p>Student ID: <input type="text" name="id" placeholder="000000" maxlength="6" required /></p>
-            <p>Email: <input type="email" name="email" placeholder="test@gmail.com" required/></p>
+            <p>Email: <input type="email" name="email" placeholder="test@gmail.com" /></p>
             <p>Password: <input type="password" name="age" placeholder="********" required /></p>
             <p><input type="submit" class="" style="align-self: center;"/></p>
            </form>
-           
+           <?php ?>
         </div>
     
     <div class="column">
-      <p style="color: #6882c0;"></p> </div>
+      <p style="color: black;"></p> </div>
   </div>
   <div class="footer">
       <p><a href="https://github.com/PlexagonStuff/MooreCoin">Source Code</a> </p>
