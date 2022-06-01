@@ -33,7 +33,7 @@ $json = json_encode($array);
 file_put_contents("wallet.json", $json);
 
 //This block repopulates the settings as blank, as they will be updated when people join MooreCoin for the first time.
-$array = array("exchangeRate" => 0, "interestRate" => 0, "moneySupply" => 0, "bondSupply" => 0, "bondPrice" => 0);
+$array = array("exchangeRate" => 0, "interestRate" => 0, "moneySupply" => 0, "bondSupply" => 0, "bondPrice" => 0, "scenario" => 2, "refreshDay" => "Fri", "refreshDate" => 0);
 $json = json_encode($array);
 file_put_contents("backend.json", $json);
 
