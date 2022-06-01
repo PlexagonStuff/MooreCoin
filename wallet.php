@@ -51,11 +51,34 @@ session_start();
           }
         }
       }
-     
+
+      //Scenario Manager
+      $scenario = json_decode(file_get_contents("scenario.json"), true);
+      $date = date("z") + 1;
+      $weekday = date("D");
+      //If it's been a week, change the scenario and make sure it is only once that day.
+      //refreshDay is the Day of the week
+      //refreshDate is the actual day of the year (1-365)
+      if (($date-$jason["refreshDate"]) >= 7 && $scenario["weekday"] != $jason["refreshDay"]){
+        $jason["refreshDay"] = $weekday;
+        $jason["refreshDate"] = $date;
+        //Max number has to manually updated
+        $jason["scenario"] = rand(1,5);
+      }
+      else{
+        $jason["refreshDay"] = $weekday;
+      }
+      //Show scenario and change toggles
+      $er = $scenario[strval($jason["scenario"])]["er"];
+      $ir = $scenario[strval($jason["scenario"])]["ir"];
+      $headline = $scenario[strval($jason["scenario"])]["scenario"];
+      ?>
+      <h1> BREAKING: <?php echo $headline ?> </h1>
+     <?php
       //Calculate Exchange Rate http://mooregb.weebly.com/ez-money-market.html has the equations
       $money = floatval($jason["moneySupply"]);
-      $jason["exchangeRate"] = ((pow($money, 3))/16464000) - ((pow($money, 2) * 3)/78400) + ($money/1680) + (5/2);
-      $jason["interestRate"] = (((5 * $money) /14) + 200) * 0.01;
+      $jason["exchangeRate"] = round(((pow($money, 3))/16464000) - ((pow($money, 2) * 3)/78400) + ($money/1680) + (5/2), 3) + $er;
+      $jason["interestRate"] = round(((((5 * $money) /14) + 200) * 0.01), 3) + $ir;
 
       file_put_contents($file, json_encode($json));
       file_put_contents($settings, json_encode($jason));
@@ -67,6 +90,8 @@ session_start();
       <form action="updatesettings.php" method="post" autocomplete="off">
         <input type="radio" id="Balances" name="option" value="balance"> Balances
         <input type="radio" id="Check" name="option" value="check"> Check All Accounts
+        <input type="radio" id="Logins" name="option" value="log"> Check Logins
+        <input type="radio" id="Scenes" name="option" value="scene"> View Scenarios
         <input type="submit">
       </form>
       <form>

@@ -26,11 +26,21 @@ session_start();
         <p> Amount added or taken away (taken away is negative) <input type="text" name="amount"/>
         <input type="submit">
   </form>
- <?php } else {
+ <?php } else if ($option == "check")  {
    $file = "wallet.json";
    $json = json_decode(file_get_contents($file), true);
    echo var_dump($json);
  }
+ else if ($option == "log")  {
+  $file = "login.json";
+  $json = json_decode(file_get_contents($file), true);
+  echo var_dump($json);
+}
+else  {
+  $file = "scenario.json";
+  $json = json_decode(file_get_contents($file), true);
+  echo var_dump($json);
+}
   ?>
   </body>
 </html>

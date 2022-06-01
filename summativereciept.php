@@ -50,7 +50,7 @@ error_reporting( E_ALL );
 $from = "admin@moorecoin.online";
 $to = "pmoore@gbcs.org";
 $subject = "Summative Point Notice";
-$message = strval($_SESSION["id"]). " has exchanged " . strval($summative) . " MooreCoins for " . strval($sumpoints) . " at an exchange rate of " . strval($settings["exchangeRate"]);
+$message = strval($_SESSION["id"]). " has exchanged " . strval($summative) . " MooreCoins for " . strval($sumpoints) . " points at an exchange rate of " . strval($settings["exchangeRate"]);
 $headers = "From:" . $from;
 if(mail($to,$subject,$message, $headers)) {
     echo "The email message was sent.";

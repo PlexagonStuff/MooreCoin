@@ -1,0 +1,9 @@
+{
+    "weekday":"Fri",
+    "date":144,
+    "1":{"er":-0.2,"ir":0,"scenario":"Travel warning to Mooreland after a Swine Flu Epidemic"},
+    "2":{"er":0,"ir":0.15,"scenario":"Federal Reserve now selling bonds after Jerome Powell pressed the wrong button"},
+    "3":{"er":-0.1,"ir":0,"scenario":"Oil Spill hurts Mooreland Oil Supply"},
+    "4":{"er":0,"ir":-0.15,"scenario":"A penny saved is now two pennies earned, savings surge"},
+    "5":{"er":0.1,"ir":0,"scenario":"MoorePark opens to international fanfare!"}
+}
