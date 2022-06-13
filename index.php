@@ -30,6 +30,7 @@ $CSS_LINK  = "styles.css?version=$FILE_TIME";
             <p>Password: <input type="password" name="age" placeholder="********" required /></p>
             <p><input type="submit" class="" style="align-self: center;"/></p>
            </form>
+           <p> Email only required on first login </p>
            <img src="Media/MooreDollar.png">
         </div>
     

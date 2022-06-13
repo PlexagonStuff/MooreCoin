@@ -41,7 +41,7 @@ session_start();
         //If the bond has the same owner as the session id, check to see if the bond has matured
         if ($bond[strval($i)]["owner"] == $_SESSION["id"]){
           //This checks to see if the date on the bond is three weeks from the current date or more (in case they haven't logged in in a while)
-          if ((((date("z") + 1) -$bond[strval($i)]["date"]) / 21) >= 1){
+          if ((abs(((date("z") + 1) -$bond[strval($i)]["date"])) / 21) >= 1){
             //Calculates Interest and adds that to principal (bond price) then adds to wallet and money supply
             $interest = $bond[strval($i)]["price"] * $bond[strval($i)]["ir"];
             $bondworth = $bond[strval($i)]["price"] + $interest;
@@ -59,7 +59,7 @@ session_start();
       //If it's been a week, change the scenario and make sure it is only once that day.
       //refreshDay is the Day of the week
       //refreshDate is the actual day of the year (1-365)
-      if (($date-$jason["refreshDate"]) >= 7 && $scenario["weekday"] != $jason["refreshDay"]){
+      if ((abs($date-$jason["refreshDate"])) >= 7 && $scenario["weekday"] != $jason["refreshDay"]){
         $jason["refreshDay"] = $weekday;
         $jason["refreshDate"] = $date;
         //Max number has to manually updated
