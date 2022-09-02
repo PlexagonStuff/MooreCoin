@@ -10,6 +10,8 @@ body{
 button{
     background-color: #991200;
     color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
   }
 
 .header {
@@ -17,6 +19,7 @@ button{
     text-align: center;
     padding: 20px;
     font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
   }
 
   /* Create three equal columns that float next to each other */
@@ -72,6 +75,7 @@ button{
     background-color: #991200;
     border: 1px solid #ddd;
     color: white;
+    font-family: 'Montserrat', sans-serif;
   }
   
   .form-inline button:hover {

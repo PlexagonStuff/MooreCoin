@@ -10,7 +10,7 @@
   <title>Welcome to MooreCoin!</title>
   <?php
   $FILE_TIME = filemtime("styles.css");
-$CSS_LINK  = "styles.css?version=$FILE_TIME";
+  $CSS_LINK  = "styles.css?version=$FILE_TIME";
 ?>
   <link href="<?php echo $CSS_LINK?>" rel="stylesheet" type="text/css" />
  </head>
@@ -38,7 +38,7 @@ $CSS_LINK  = "styles.css?version=$FILE_TIME";
       <p style="color: black;"></p> </div>
   </div>
   <div class="footer">
-      <p><a href="https://github.com/PlexagonStuff/MooreCoin">Source Code</a> </p>
+      <p><a href="https://github.com/PlexagonStuff/MooreCoin">Source Code</a> <a href="feedback.php">Feedback Form</a> </p>
   </div>
  </body>
 </html>

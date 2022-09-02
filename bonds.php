@@ -5,6 +5,9 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@473&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="Media/Moorecoinz.png">
     <meta name="viewport" content="width=device-width">
     <title>Update Settings</title>
