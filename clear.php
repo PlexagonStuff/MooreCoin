@@ -23,17 +23,17 @@ unlink("bonds.json");
 
 //This block recreates the login and wallet files and repopulates it with admin information
 $id = "admin";
-$array = array($id => array("password" => 1234));
+$array = array($id => array("password" => 1234, "email" => "pmoore@gbcs.org"));
 $json = json_encode($array);
 file_put_contents("login.json", $json);
 
 $id = "admin";
-$array = array($id => array("coins" => 0, "email" => "pmoore@gbcs.org"));
+$array = array($id => array("coins" => 1));
 $json = json_encode($array);
 file_put_contents("wallet.json", $json);
 
 //This block repopulates the settings as blank, as they will be updated when people join MooreCoin for the first time.
-$array = array("exchangeRate" => 0, "interestRate" => 0, "moneySupply" => 0, "bondSupply" => 0, "bondPrice" => 0, "scenario" => 2, "refreshDay" => "Fri", "refreshDate" => 0);
+$array = array("exchangeRate" => 0, "interestRate" => 0, "moneySupply" => 1, "bondSupply" => 0, "bondPrice" => 0, "scenario" => 2, "refreshDay" => "Fri", "refreshDate" => 0);
 $json = json_encode($array);
 file_put_contents("backend.json", $json);
 

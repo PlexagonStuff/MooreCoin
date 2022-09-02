@@ -22,8 +22,8 @@ session_start();
       $jason = json_decode(file_get_contents($settings), true);
       //If we don't have a wallet (first time login), we add a new wallet (initializes three coins)
       if (is_null($json[$_SESSION["id"]])) {
-        $coins = 3.0;
-        $jason["moneySupply"] = $jason["moneySupply"] + 3.0;
+        $coins = 1.0;
+        $jason["moneySupply"] = $jason["moneySupply"] + 1.0;
         $json[$_SESSION["id"]] = array("coins" => $coins);
         file_put_contents($file, json_encode($json));
         file_put_contents($settings, json_encode($jason));
@@ -78,7 +78,9 @@ session_start();
       //Calculate Exchange Rate http://mooregb.weebly.com/ez-money-market.html has the equations
       $money = floatval($jason["moneySupply"]);
       $jason["exchangeRate"] = round(((pow($money, 3))/16464000) - ((pow($money, 2) * 3)/78400) + ($money/1680) + (5/2), 3) + $er;
-      $jason["interestRate"] = round(((((5 * $money) /14) + 200) * 0.01), 3) + $ir;
+      $jason["exchangeRate"] = round(($jason["exchangeRate"] / 4.0), 3);
+      $jason["interestRate"] = round((91.0/(3.0 * pow($money, 1/2))), 3) + $ir;
+      $jason["interestRate"] = round(($jason["interestRate"] / 3.0), 3);
 
       file_put_contents($file, json_encode($json));
       file_put_contents($settings, json_encode($jason));
@@ -97,6 +99,8 @@ session_start();
       <form>
       <button formaction="clear.php">Clear All Data </button>
       </form>
+    <p> The current exchange rate is 1 MooreCoin to <?php echo $jason["exchangeRate"] ?> summative points </p>
+    <p> The current interest rate is <?php echo (floatval($jason["interestRate"]) * 100) ?>%</p>
    <?php }
 
 
