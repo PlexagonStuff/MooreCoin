@@ -13,7 +13,7 @@ if (isset($_POST['all'])) {
         $summative = $coin[$_SESSION["id"]]["coins"];
 } 
 else if (isset($_POST['some'])) {
-    if (floatval($points) <= $coin[$_SESSION["id"]]["coins"]){
+    if (abs(floatval($points)) <= $coin[$_SESSION["id"]]["coins"]){
         $summative = floatval($points);
     }
     else {
