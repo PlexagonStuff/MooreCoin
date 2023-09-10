@@ -2,7 +2,7 @@
 session_start();
 ?>
 <?php
-$points = floatval($_POST['point']);
+$points = abs(floatval($_POST['point']));
 $coin = json_decode(file_get_contents("wallet.json"), true);
 $settings = json_decode(file_get_contents("backend.json"), true);
 $summative = 0;

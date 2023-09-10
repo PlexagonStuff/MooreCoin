@@ -8,14 +8,14 @@ body{
   }
 
 button{
-    background-color: #991200;
+    background-color: #FE5000;
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
   }
 
 .header {
-    background-color: #991200;
+    background-color: #FE5000;
     text-align: center;
     padding: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -44,7 +44,7 @@ button{
   }
 
   .footer {
-    background-color:#991200;
+    background-color:#FE5000;
     text-align: center;
     padding: 10px;
   }
@@ -72,7 +72,7 @@ button{
   
   /* Style the submit button */
   .form-inline button {
-    background-color: #991200;
+    background-color: #FE5000;
     border: 1px solid #ddd;
     color: white;
     font-family: 'Montserrat', sans-serif;
